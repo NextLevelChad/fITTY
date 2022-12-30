@@ -2,6 +2,13 @@ import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 function LoginForm() {
+
+  const handleLogin = (e) => {
+    e.preventDefault() 
+    console.log("Testing whether env variables are here ", process.env.NEXTAUTH_URL)
+    signIn("google")
+  }
+
   const { data: session } = useSession();
   if (session) {
     return (
@@ -14,7 +21,7 @@ function LoginForm() {
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button onClick={(e) => {handleLogin(e)}}>Sign in</button>
     </>
   );
 }
