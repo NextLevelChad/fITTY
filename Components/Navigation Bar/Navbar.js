@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 function NavLink({ to, children }) {
   return (
@@ -16,8 +17,6 @@ function MobileNav({ open, setOpen }) {
       } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
     >
       <div className="flex items-center justify-center filter drop-shadow-md bg-white h-20">
-        {" "}
-        {/*logo container*/}
         <a className="text-xl font-semibold" href="/">
           fITTY
         </a>
@@ -52,6 +51,10 @@ function MobileNav({ open, setOpen }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
+
+  console.log(session);
+
   return (
     <nav className="flex filter drop-shadow-md bg-white px-4 py-4 h-20 items-center">
       <MobileNav open={open} setOpen={setOpen} />
@@ -86,8 +89,12 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex">
-          <NavLink to="/about">ABOUT</NavLink>
-          <NavLink to="/login">LOGIN</NavLink>
+          <NavLink to="/about">aBOUT</NavLink>
+          {session ? (
+            <NavLink to="/profile">pROFILE </NavLink>
+          ) : (
+            <NavLink to="/login">lOGIN</NavLink>
+          )}
         </div>
       </div>
     </nav>
