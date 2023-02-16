@@ -2,7 +2,7 @@ import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 function LoginForm() {
-  const handleLogin = (e) => {
+  const handleGoogleLogin = (e) => {
     e.preventDefault();
     console.log(
       "Testing whether env variables are here ",
@@ -14,26 +14,29 @@ function LoginForm() {
   const { data: session } = useSession();
   if (session) {
     return (
-      <>
-        Signed in as {session.user.email} <br />
+      <div className="flex flex-col items-center gap-4">
+        <h1>Signed in as {session.user.name.toLocaleUpperCase()}</h1>
         <p>
-          Click to go to your <a href="/profile">Profile</a>
+          <a href="/profile">Click here to go to your Profile</a>
         </p>
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
+        <button className="btn-primary" onClick={() => signOut()}>
+          Sign out
+        </button>
+      </div>
     );
   }
   return (
-    <>
-      Not signed in <br />
+    <div className="flex flex-col items-center gap-4">
+      <h1>You are not signed in currently, please select a provider:</h1>
       <button
+        className="btn-primary"
         onClick={(e) => {
-          handleLogin(e);
+          handleGoogleLogin(e);
         }}
       >
-        Sign in
+        Sign in with Google
       </button>
-    </>
+    </div>
   );
 }
 export default LoginForm;

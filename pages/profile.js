@@ -17,7 +17,7 @@ function profile() {
   // Stats? Or other identity data like height, weight, etc?
 
   return (
-    <div className="flex justify-center flex-col items-center container h-full flex-grow">
+    <div className="flex justify-center flex-col items-center container flex-grow gap-4">
       <div>
         <h1>Welcome {session.user.name.toLocaleUpperCase()}</h1>
       </div>
