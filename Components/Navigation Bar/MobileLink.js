@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function MobileLink({ href, setIsOpen, linkText, open }) {
+export default function MobileLink({ href, setOpen, linkText, open }) {
   return (
     <>
       <a
@@ -8,7 +8,7 @@ export default function MobileLink({ href, setIsOpen, linkText, open }) {
         href={href}
         onClick={() =>
           setTimeout(() => {
-            setIsOpen(!open);
+            setOpen(!open);
           }, 100)
         }
       >

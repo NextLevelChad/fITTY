@@ -16,8 +16,12 @@ export default function App({
         />
       </Head>
       <SessionProvider session={session}>
-        <Navbar />
-        <Component {...pageProps} />
+        <div className="min-w-screen min-h-screen overflow-hidden flex flex-col">
+          <Navbar />
+          <div className="flex-grow flex flex-col">
+            <Component {...pageProps} />
+          </div>
+        </div>
       </SessionProvider>
     </>
   );
