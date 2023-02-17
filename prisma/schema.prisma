@@ -11,7 +11,40 @@ datasource db {
 }
 
 model User {
-  id    String @id @default(uuid())
-  name  String
-  email String
+  id              String           @id @default(uuid())
+  name            String
+  email           String           @unique
+  exerciseRecords ExerciseRecord[]
+  personalRecords PersonalRecord[]
+}
+
+//For Logging the Exercise Record off the Form
+model ExerciseRecord {
+  id            String   @id @default(uuid())
+  exerciseName  String
+  datePerformed DateTime @default(now())
+  sets          Set[]
+  User          User     @relation(fields: [userId], references: [id])
+  userId        String
+
+  @@index([exerciseName])
+  @@index([datePerformed])
+}
+
+model Set {
+  id               String         @id @default(uuid())
+  ExerciseRecord   ExerciseRecord @relation(fields: [exerciseRecordId], references: [id])
+  exerciseRecordId String
+  weight           Int
+  repetitions      Int
+}
+
+model PersonalRecord {
+  id           String @id @default(uuid())
+  User         User   @relation(fields: [userId], references: [id])
+  userId       String
+  exerciseName String
+  weight       Int
+
+  @@index([exerciseName])
 }
