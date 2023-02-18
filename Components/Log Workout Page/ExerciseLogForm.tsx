@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { Exercise } from '../types/exercise';
-import { Set } from '../types/set';
-import { PersonalRecord } from '../types/personalRecord';
-import { FormValues } from '../types/FormValues';
-import { LogType } from '../types/LogType';
-// import { createSet, createPersonalRecord } from '../api';
-import prisma from '../lib/prisma';
-import exercises from '../lib/exercises'
+import { Set } from '../../types/set';
+import { FormValues } from '../../types/FormValues';
+import { LogType } from '../../types/LogType';
+import exercises from '../../lib/exercises'
 
 
-export default function exerciseLogForm () {    
+export default function ExerciseLogForm () {    
     const [values, setValues] = useState<FormValues>({
         exercise: null,
         logType: 'Sets',
@@ -108,7 +104,7 @@ export default function exerciseLogForm () {
         <label htmlFor="exercise" className="block text-lg font-medium">
           Exercise
         </label>
-        <div className="relative">
+        <div className="">
           <select
             name="exercise"
             id="exercise"

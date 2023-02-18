@@ -36,18 +36,12 @@ export default function MobileNav({ open, setOpen, session }) {
             fITTY
           </a>
         </div>
-        <div className="flex flex-col ml-4">
+        <div className="z-40 flex flex-col ml-4">
           <MobileLink
-            href="/about"
+            href="/home"
             setOpen={setOpen}
             open={open}
-            linkText="About"
-          />
-          <MobileLink
-            href="/contact"
-            setOpen={setOpen}
-            open={open}
-            linkText="Contact"
+            linkText="HOME"
           />
           {session ? (
             <>
@@ -55,13 +49,19 @@ export default function MobileNav({ open, setOpen, session }) {
                 href="/dashboard"
                 setOpen={setOpen}
                 open={open}
-                linkText="Dashboard"
+                linkText="DASHBOARD"
               />
               <MobileLink
                 href="/profile"
                 setOpen={setOpen}
                 open={open}
-                linkText="Profile"
+                linkText="PROFILE"
+              />
+              <MobileLink
+                href="/logworkout"
+                setOpen={setOpen}
+                open={open}
+                linkText="LOG WORKOUT"
               />
             </>
           ) : (
