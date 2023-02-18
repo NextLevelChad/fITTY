@@ -25,15 +25,18 @@ export default function Navbar() {
         <MobileNav open={open} setOpen={setOpen} session={session} />
         <div className="hidden md:flex">
           <NavLink to="/">HOME</NavLink>
-          <NavLink to="/about">ABOUT</NavLink>
           {session ? (
             <>
+              <NavLink to="/logworkout">LOG WORKOUT</NavLink>
               <NavLink to="/dashboard">DASHBOARD</NavLink>
               <NavLink to="/profile">PROFILE </NavLink>
             </>
           ) : (
             <NavLink to="/login">LOGIN</NavLink>
           )}
+        </div>
+        <div className="hidden md:flex">
+          <img src={session?.user.image} className="h-10 w-10 rounded-full" />
         </div>
       </div>
     </nav>

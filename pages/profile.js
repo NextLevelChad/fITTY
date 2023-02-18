@@ -4,8 +4,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 function profile() {
   const { data: session } = useSession();
 
-  console.log(session ? session.user.name : "NO Session yet");
-
   if (!session) {
     return (
       <div className="flex justify-center flex-col items-center h-screen container">
@@ -18,6 +16,9 @@ function profile() {
 
   return (
     <div className="flex justify-center flex-col items-center container flex-grow gap-4">
+      <div className="">
+        <img src={session.user.image} className="h-40 w-40 rounded-full" />
+      </div>
       <div>
         <h1>Welcome {session.user.name.toLocaleUpperCase()}</h1>
       </div>
