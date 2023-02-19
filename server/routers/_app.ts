@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { procedure, router } from '../trpc';
 
-import { logExerciseRouter } from './logexercise';
+import { logExerciseRouter } from './logExerciseRouter';
 
 
 export const appRouter = router({
