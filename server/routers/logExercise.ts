@@ -1,11 +1,9 @@
 import { z } from 'zod';
 import { procedure, router } from '../trpc';
 
-import { logExerciseRouter } from './logexercise';
 
-
-export const appRouter = router({
-  hello: procedure
+export const logExerciseRouter = router({
+  logExercise: procedure
     .input(
       z.object({
         text: z.string(),
@@ -16,7 +14,6 @@ export const appRouter = router({
         greeting: `hello ${input.text}`,
       };
     }),
-    logExercise: logExerciseRouter,
 });
 
-export type AppRouter = typeof appRouter;
+export type logExerciseRouter = typeof router;
