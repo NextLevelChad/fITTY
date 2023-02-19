@@ -6,14 +6,9 @@ import { logExerciseRouter } from './logExerciseRouter';
 
 export const appRouter = router({
   hello: procedure
-    .input(
-      z.object({
-        text: z.string(),
-      }),
-    )
-    .query(({ input }) => {
+    .query(() => {
       return {
-        greeting: `hello ${input.text}`,
+        response: "TRPC is Online and Responding"
       };
     }),
     logExercise: logExerciseRouter,
