@@ -6,6 +6,9 @@ import exercises from "../../lib/exercises";
 import { PersonalRecord } from "../../types/personalRecord";
 import { Exercise } from "../../types/exercise";
 
+//trpc imports
+import { trpc } from "../../utils/trpc";
+
 export default function ExerciseLogForm() {
   const [values, setValues] = useState<FormValues>({
     exercise: null,
@@ -13,6 +16,8 @@ export default function ExerciseLogForm() {
     sets: [],
     personalRecord: null,
   });
+
+  let response = trpc.logExercise.log.useQuery({ text: "Chad" });
 
   const handleExerciseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.value;

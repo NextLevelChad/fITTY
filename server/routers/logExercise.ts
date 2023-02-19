@@ -3,7 +3,7 @@ import { procedure, router } from '../trpc';
 
 
 export const logExerciseRouter = router({
-  logExercise: procedure
+  log: procedure
     .input(
       z.object({
         text: z.string(),
