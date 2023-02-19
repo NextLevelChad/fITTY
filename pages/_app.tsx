@@ -1,12 +1,18 @@
 import "../styles/globals.css";
+import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import Navbar from "../Components/Navigation Bar/Navbar";
 import Head from "next/head";
+import type { AppType } from "next/app";
+import { trpc } from "../utils/trpc";
+import type { AppProps } from "next/app";
 
-export default function App({
+function MyApp({
   Component,
-  pageProps: { session, ...pageProps },
-}) {
+  pageProps,
+}: AppProps<{
+  session: Session;
+}>) {
   return (
     <>
       <Head>
@@ -15,7 +21,7 @@ export default function App({
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
         />
       </Head>
-      <SessionProvider session={session}>
+      <SessionProvider session={pageProps.session}>
         <div className="min-w-screen min-h-screen overflow-hidden flex flex-col">
           <Navbar />
           <div className="flex-grow flex flex-col">
@@ -26,3 +32,5 @@ export default function App({
     </>
   );
 }
+
+export default trpc.withTRPC(MyApp);
