@@ -41,11 +41,13 @@ model Set {
 }
 
 model PersonalRecord {
-  id           String @id @default(uuid())
-  User         User   @relation(fields: [userId], references: [id])
-  userId       String
-  exerciseName String
-  weight       Int
+  id            String   @id @default(uuid())
+  User          User     @relation(fields: [userId], references: [id])
+  datePerformed DateTime @default(now())
+  userId        String
+  exerciseName  String
+  weight        Int
 
   @@index([exerciseName])
+  @@index([datePerformed])
 }

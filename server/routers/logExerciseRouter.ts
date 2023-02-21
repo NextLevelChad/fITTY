@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { procedure, router } from "../trpc";
 import prisma from "../../lib/prisma";
-import Email from "next-auth/providers/email";
 
 const setsSchema = z.object({
   setId: z.number(),
@@ -10,17 +9,6 @@ const setsSchema = z.object({
 });
 
 export const logExerciseRouter = router({
-  log: procedure
-    .input(
-      z.object({
-        text: z.string(),
-      })
-    )
-    .query(({ input }) => {
-      return {
-        greeting: `hello ${input.text}`,
-      };
-    }),
   submitLog: procedure
     .input(
       z.object({
