@@ -61,12 +61,9 @@ export default function ExerciseLogForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Got into the this function")
-
-
-    console.log("This is the submit form function, ", submitForm)
-
     if (values.logType === 'Sets') {
+        console.log("We got into this function")
+        console.log("Values dot sets is set to, ", values.sets)
           await submitForm.mutate({
             userEmail: session.user.email,
             exerciseName: values.exercise, 
