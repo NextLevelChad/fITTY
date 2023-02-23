@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import MobileNav from "./MobileNav";
+import Image from "next/image";
 
 function NavLink({ to, children }) {
   return (
@@ -35,8 +36,13 @@ export default function Navbar() {
             <NavLink to="/login">LOGIN</NavLink>
           )}
         </div>
-        <div className="hidden md:flex">
-          <img src={session?.user.image} className="h-10 w-10 rounded-full" />
+        <div className="hidden md:flex h-10 w-10">
+          <Image
+            src={session?.user.image}
+            className="rounded-full"
+            width="40"
+            height="10"
+          />
         </div>
       </div>
     </nav>
