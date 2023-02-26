@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardPersonalRecords from "../Components/Dashboard Page/DashboardPersonalRecords";
+import DashboardPersonalRecords from "../../Components/Dashboard Page/DashboardPersonalRecords";
 
 function dashboard() {
   return (
