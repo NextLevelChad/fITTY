@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+
 //trpc imports
 import { trpc } from "../../utils/trpc";
 
@@ -65,6 +67,11 @@ const DashboardPersonalRecords = () => {
         ) : (
           <div>You do not currently have any stored personal records</div>
         )}
+        <Link href="/dashboard/personalrecords">
+          <div className="flex justify-center text-center items-center mt-4 bg-color-light-white-fill border-2 rounded-sm border-orange-accent p-4">
+            More...
+          </div>
+        </Link>
       </div>
     );
   }
