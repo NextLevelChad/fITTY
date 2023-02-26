@@ -23,6 +23,13 @@ export const dashboardRouter = router({
         where: {
           User: usersId,
         },
+        select: {
+          id: true,
+          weight: true,
+          datePerformed: true,
+          exerciseName: true,
+          userId: true,
+        },
       });
 
       return personalRecords;

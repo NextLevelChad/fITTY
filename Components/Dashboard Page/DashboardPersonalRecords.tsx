@@ -11,37 +11,63 @@ import ExerciseRecordCard from "./ExerciseRecordCard";
 const DashboardPersonalRecords = () => {
   const { data: session } = useSession();
   const email = session?.user.email;
-  const [personalRecords, setPersonalRecords] = useState(null);
 
-  useEffect(() => {
-    setPersonalRecords(() => {
-      trpc.dashboard.getAllPersonalRecords.useQuery({
-        userEmail: email,
-      });
+  const { isLoading, isError, data } =
+    trpc.dashboard.getAllPersonalRecords.useQuery({
+      userEmail: email,
     });
-  }, []);
 
-  console.log("These are the returned Personal Records", personalRecords);
-
-  if (!personalRecords) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
+        <TitleBadge text="PERSONAL RECORDS..." />
+        <span className="text-center">
+          Your last 5 Personal Records are loading...
+        </span>
+      </div>
+    );
   }
 
-  return (
-    <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
-      <TitleBadge text="PERSONAL RECORDS..." />
-      <span className="text-center">Your last 5 Personal Records</span>
-      {personalRecords.data?.map((record) => {
-        return (
-          <ExerciseRecordCard
-            exerciseName={record.exerciseName}
-            type="strength"
-            weight={record.weight}
-          />
-        );
-      })}
-    </div>
-  );
+  if (isError) {
+    return (
+      <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
+        <TitleBadge text="PERSONAL RECORDS..." />
+        <span className="text-center">
+          There was an error retrieving your personal records
+        </span>
+      </div>
+    );
+  }
+
+  if (data) {
+    const slicedData = data.slice(-5);
+    slicedData.sort(
+      (a, b) =>
+        new Date(b.datePerformed).valueOf() -
+        new Date(a.datePerformed).valueOf()
+    );
+    console.log(slicedData);
+    return (
+      <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
+        <TitleBadge text="PERSONAL RECORDS..." />
+        <span className="text-center">Your last 5 Personal Records</span>
+        {data.length > 0 ? (
+          slicedData?.map((record) => {
+            return (
+              <ExerciseRecordCard
+                key={record.id}
+                exerciseName={record.exerciseName}
+                type="strength"
+                weight={record.weight}
+              />
+            );
+          })
+        ) : (
+          <div>You do not currently have any stored personal records</div>
+        )}
+      </div>
+    );
+  }
 };
 
 export default DashboardPersonalRecords;

@@ -5,8 +5,6 @@ function dashboard() {
   return (
     <div className="container flex justify-center flex-wrap">
       <DashboardPersonalRecords />
-      <DashboardPersonalRecords />
-      <DashboardPersonalRecords />
     </div>
   );
 }
