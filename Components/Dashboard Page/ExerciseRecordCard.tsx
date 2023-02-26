@@ -3,9 +3,12 @@ import Image from "next/image";
 
 function ExerciseBar(props) {
   return (
-    <div className="h-10 flex justify-between items-center border rounded rounded-xl p-2 shadow-dashboard-card ">
-      <div className="grow-1">
-        <span>{props.exerciseName}</span>
+    <div className="m-h-10 flex sm:justify-between items-center border rounded rounded-xl p-2 shadow-dashboard-card flex-wrap mt-4 justify-center ">
+      <div className="grow-1 flex flex-col justify-center items-center">
+        <span className="text-xs md:text-sm mr-2 text-center">
+          {props.exerciseName}
+        </span>
+        <span>{props.weight}lbs</span>
       </div>
       <div className="flex justify-center items-center flex-nowrap gap-2">
         <Image

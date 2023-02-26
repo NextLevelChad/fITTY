@@ -46,22 +46,23 @@ export default function MobileNav({ open, setOpen, session }) {
           {session ? (
             <>
               <MobileLink
+                href="/logworkout"
+                setOpen={setOpen}
+                open={open}
+                linkText="LOG WORKOUT"
+              />
+              <MobileLink
                 href="/dashboard"
                 setOpen={setOpen}
                 open={open}
                 linkText="DASHBOARD"
               />
+
               <MobileLink
                 href="/profile"
                 setOpen={setOpen}
                 open={open}
                 linkText="PROFILE"
-              />
-              <MobileLink
-                href="/logworkout"
-                setOpen={setOpen}
-                open={open}
-                linkText="LOG WORKOUT"
               />
             </>
           ) : (

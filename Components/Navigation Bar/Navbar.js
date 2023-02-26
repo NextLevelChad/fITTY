@@ -36,14 +36,16 @@ export default function Navbar() {
             <NavLink to="/login">LOGIN</NavLink>
           )}
         </div>
-        <div className="hidden md:flex h-10 w-10">
-          <Image
-            src={session?.user.image}
-            className="rounded-full"
-            width="40"
-            height="10"
-          />
-        </div>
+        {session && (
+          <div className="hidden md:flex h-10 w-10">
+            <Image
+              src={session?.user.image}
+              className="rounded-full"
+              width="40"
+              height="10"
+            />
+          </div>
+        )}
       </div>
     </nav>
   );

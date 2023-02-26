@@ -3,7 +3,9 @@ import DashboardPersonalRecords from "../Components/Dashboard Page/DashboardPers
 
 function dashboard() {
   return (
-    <div>
+    <div className="container flex justify-center flex-wrap">
+      <DashboardPersonalRecords />
+      <DashboardPersonalRecords />
       <DashboardPersonalRecords />
     </div>
   );

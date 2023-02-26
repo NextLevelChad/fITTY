@@ -20,7 +20,7 @@ module.exports = {
         "green-badge-text": "#008E75",
         "green-badge-fill": "#EBFFFE",
         "green-badge-border": "#49F6B8",
-        "orange-accent": "#D7945A",
+        "orange-accent": "#49F6B8",
         "light-white-fill": "#FEFFFD",
       },
       boxShadow: {
