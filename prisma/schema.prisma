@@ -27,9 +27,11 @@ model ExerciseRecord {
   sets          Set[]
   User          User     @relation(fields: [userId], references: [id])
   userId        String
+  exerciseType  String
 
   @@index([exerciseName])
   @@index([datePerformed])
+  @@index([exerciseType])
 }
 
 model Set {
@@ -47,6 +49,7 @@ model PersonalRecord {
   userId        String
   exerciseName  String
   weight        Int
+  exerciseType  String
 
   @@index([exerciseName])
   @@index([datePerformed])

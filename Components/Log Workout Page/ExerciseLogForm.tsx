@@ -5,24 +5,22 @@ import { LogType } from "../../types/LogType";
 import exercises from "../../lib/exercises";
 import { PersonalRecord } from "../../types/personalRecord";
 import { Exercise } from "../../types/exercise";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 //trpc imports
 import { trpc } from "../../utils/trpc";
 
 export default function ExerciseLogForm() {
   const [values, setValues] = useState<FormValues>({
+    exerciseType: "Strength",
     exercise: null,
     logType: "Sets",
     sets: [],
     personalRecord: null,
   });
 
-  const {data: session} = useSession();
+  const { data: session } = useSession();
   const submitForm = trpc.logExercise.submitLog.useMutation();
-
-
-
 
   const handleExerciseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.value;
@@ -61,23 +59,23 @@ export default function ExerciseLogForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (values.logType === 'Sets') {
-        console.log("We got into this function")
-        console.log("Values dot sets is set to, ", values.sets)
-          await submitForm.mutate({
-            userEmail: session.user.email,
-            exerciseName: values.exercise, 
-            logType: values.logType,
-            sets: values.sets
-          })
-        } else {
-          await submitForm.mutate({
-            userEmail: session.user.email,
-            exerciseName: values.exercise, 
-            logType: values.logType,
-            personalRecord: values.personalRecord
-          })
-        }
+    if (values.logType === "Sets") {
+      console.log("We got into this function");
+      console.log("Values dot sets is set to, ", values.sets);
+      await submitForm.mutate({
+        userEmail: session.user.email,
+        exerciseName: values.exercise,
+        logType: values.logType,
+        sets: values.sets,
+      });
+    } else {
+      await submitForm.mutate({
+        userEmail: session.user.email,
+        exerciseName: values.exercise,
+        logType: values.logType,
+        personalRecord: values.personalRecord,
+      });
+    }
 
     setValues({
       exercise: null,
@@ -88,7 +86,10 @@ export default function ExerciseLogForm() {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="p-4 mx-auto max-w-screen-lg">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="p-4 mx-auto max-w-screen-lg"
+    >
       <h2 className="text-2xl font-bold">Add Exercise Log</h2>
       <div className="mt-4">
         <label htmlFor="exercise" className="block text-lg font-medium">

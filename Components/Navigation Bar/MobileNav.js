@@ -37,12 +37,7 @@ export default function MobileNav({ open, setOpen, session }) {
           </a>
         </div>
         <div className="z-40 flex flex-col ml-4">
-          <MobileLink
-            href="/home"
-            setOpen={setOpen}
-            open={open}
-            linkText="HOME"
-          />
+          <MobileLink href="/" setOpen={setOpen} open={open} linkText="HOME" />
           {session ? (
             <>
               <MobileLink
