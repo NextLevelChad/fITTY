@@ -3,7 +3,7 @@ import { Set } from "./set";
 import { PersonalRecord } from "./personalRecord";
 
 export type FormValues = {
-  exercisteType: string;
+  exerciseType: string | null;
   exercise: string | null;
   logType: LogType;
   sets: Set[];

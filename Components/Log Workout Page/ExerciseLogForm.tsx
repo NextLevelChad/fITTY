@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Set } from "../../types/set";
 import { FormValues } from "../../types/FormValues";
 import { LogType } from "../../types/LogType";
-import exercises from "../../lib/exercises";
-import { PersonalRecord } from "../../types/personalRecord";
-import { Exercise } from "../../types/exercise";
+import { ExerciseTypes } from "../../types/exerciseTypes";
+import strengthExercises from "../../lib/strengthExercises";
 import { useSession } from "next-auth/react";
 
 //trpc imports
@@ -23,6 +22,7 @@ export default function ExerciseLogForm() {
   const submitForm = trpc.logExercise.submitLog.useMutation();
 
   const handleExerciseChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const selected = e.target.value;
     setValues((prevValues) => ({
       ...prevValues,
@@ -57,6 +57,13 @@ export default function ExerciseLogForm() {
     });
   };
 
+  const handleTypeOfExerciseChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const exerciseType = e.target.value as ExerciseTypes;
+    setValues((prevValues) => ({ ...prevValues, exerciseType }));
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (values.logType === "Sets") {
@@ -82,6 +89,7 @@ export default function ExerciseLogForm() {
       logType: "Sets",
       sets: [],
       personalRecord: null,
+      exerciseType: null,
     });
   };
 
@@ -92,8 +100,26 @@ export default function ExerciseLogForm() {
     >
       <h2 className="text-2xl font-bold">Add Exercise Log</h2>
       <div className="mt-4">
+        <label htmlFor="logType" className="block text-lg font-medium">
+          Type of Exercise
+        </label>
+        <select
+          name="typeOfExercise"
+          id="typeOfExercise"
+          onChange={(e) => handleTypeOfExerciseChange(e)}
+          value={values.exerciseType}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+        >
+          <option value="Strength">Strength</option>
+          <option value="Endurance">Endurance</option>
+          <option value="Balance">Balance</option>
+          <option value="Flexibility">Flexibility</option>
+        </select>
+      </div>
+
+      <div className="mt-4">
         <label htmlFor="exercise" className="block text-lg font-medium">
-          Exercise
+          Exercise Name
         </label>
         <div className="">
           <input
@@ -106,7 +132,7 @@ export default function ExerciseLogForm() {
           />
           <datalist id="exercises">
             <option value="">Select an exercise</option>
-            {exercises?.map((exercise, idx) => (
+            {strengthExercises?.map((exercise, idx) => (
               <option key={idx} value={exercise.Exercise}>
                 {exercise.Exercise}
               </option>

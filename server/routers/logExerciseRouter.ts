@@ -33,7 +33,7 @@ export const logExerciseRouter = router({
           id: true,
         },
       });
-
+      console.log(usersId);
       if (input.logType === "Personal Record") {
         const pr = await prisma.personalRecord
           .create({
@@ -41,9 +41,11 @@ export const logExerciseRouter = router({
               userId: usersId.id,
               exerciseName: input.exerciseName,
               weight: input.personalRecord.weight,
+              exerciseType: "Strength",
             },
           })
           .catch((err) => {
+            console.log(err);
             throw err;
           });
       } else {
