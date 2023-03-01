@@ -54,3 +54,17 @@ model PersonalRecord {
   @@index([exerciseName])
   @@index([datePerformed])
 }
+
+model Exercise {
+  id    String @id @default(uuid())
+  name  String
+  level String
+  type  Type
+}
+
+enum Type {
+  STRENGTH
+  ENDURANCE
+  FLEXIBILITY
+  BALANCE
+}

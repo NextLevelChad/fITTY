@@ -19,7 +19,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "lib/strengthExercises.js",
+    "lib/exercises.js",
     "pages/api/auth/[...nextauth].js"
   ],
   "exclude": ["node_modules"]

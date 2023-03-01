@@ -3,7 +3,7 @@ import { Set } from "../../types/set";
 import { FormValues } from "../../types/FormValues";
 import { LogType } from "../../types/LogType";
 import { ExerciseTypes } from "../../types/exerciseTypes";
-import strengthExercises from "../../lib/strengthExercises";
+import { exercises } from "../../lib/exercises";
 import { useSession } from "next-auth/react";
 
 //trpc imports
@@ -132,7 +132,7 @@ export default function ExerciseLogForm() {
           />
           <datalist id="exercises">
             <option value="">Select an exercise</option>
-            {strengthExercises?.map((exercise, idx) => (
+            {exercises?.map((exercise, idx) => (
               <option key={idx} value={exercise.Exercise}>
                 {exercise.Exercise}
               </option>
