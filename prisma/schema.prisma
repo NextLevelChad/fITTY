@@ -17,6 +17,7 @@ model User {
   image           String
   exerciseRecords ExerciseRecord[]
   personalRecords PersonalRecord[]
+  TimeRecord      TimeRecord[]
 }
 
 //For Logging the Exercise Record off the Form
@@ -52,6 +53,19 @@ model PersonalRecord {
   exerciseType  String
 
   @@index([exerciseName])
+  @@index([datePerformed])
+}
+
+model TimeRecord {
+  id            String   @id @default(uuid())
+  User          User     @relation(fields: [userId], references: [id])
+  datePerformed DateTime @default(now())
+  userId        String
+  exerciseName  String
+  time          Int
+  exerciseType  String
+
+  @@index([time])
   @@index([datePerformed])
 }
 

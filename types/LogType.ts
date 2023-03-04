@@ -1,1 +1,1 @@
-export type LogType = 'Sets' | 'Personal Record';
+export type LogType = "Sets" | "Personal Record" | "Time";

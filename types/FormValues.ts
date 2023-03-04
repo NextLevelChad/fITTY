@@ -8,4 +8,5 @@ export type FormValues = {
   logType: LogType;
   sets: Set[];
   personalRecord: PersonalRecord | null;
+  time: number;
 };

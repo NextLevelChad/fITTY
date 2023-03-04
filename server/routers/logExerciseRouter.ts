@@ -21,10 +21,12 @@ export const logExerciseRouter = router({
             weight: z.number(),
           })
         ),
+        time: z.number(),
+        exerciseType: z.string(),
       })
     )
     .mutation(async ({ input }) => {
-      console.log("This is what we received", input);
+      console.log("We got here, here's the input, ", input);
       const usersId = await prisma.user.findUnique({
         where: {
           email: input.userEmail,
@@ -33,7 +35,6 @@ export const logExerciseRouter = router({
           id: true,
         },
       });
-      console.log(usersId);
       if (input.logType === "Personal Record") {
         const pr = await prisma.personalRecord
           .create({
@@ -41,37 +42,60 @@ export const logExerciseRouter = router({
               userId: usersId.id,
               exerciseName: input.exerciseName,
               weight: input.personalRecord.weight,
-              exerciseType: "Strength",
+              exerciseType: input.exerciseType,
             },
           })
           .catch((err) => {
-            console.log(err);
+            console.log("There was an error adding the Personal Record, ", err);
             throw err;
           });
-      } else {
-        console.log("We got into the else statement yay!");
-        const newExerciseRecord = await prisma.exerciseRecord.create({
-          data: {
-            userId: usersId.id,
-            exerciseName: input.exerciseName,
-          },
-        });
-        console.log("This is the new exercise record", newExerciseRecord);
+      } else if (input.logType === "Sets") {
+        const newExerciseRecord = await prisma.exerciseRecord
+          .create({
+            data: {
+              userId: usersId.id,
+              exerciseName: input.exerciseName,
+              exerciseType: input.exerciseType,
+            },
+          })
+          .catch((err) => {
+            console.log("There was an error adding the Exercise Record, ", err);
+            throw err;
+          });
 
-        const setRecord = await prisma.set.createMany({
-          data: input.sets.map((set) => {
-            return {
-              exerciseRecordId: newExerciseRecord.id,
-              weight: set.weight,
-              repetitions: set.repetitions,
-            };
-          }),
-        });
-        console.log("This is the set record", setRecord);
+        const setRecord = await prisma.set
+          .createMany({
+            data: input.sets.map((set) => {
+              return {
+                exerciseRecordId: newExerciseRecord.id,
+                weight: set.weight,
+                repetitions: set.repetitions,
+              };
+            }),
+          })
+          .catch((err) => {
+            console.log("There was an error creating the sets, ", err);
+            throw err;
+          });
+      } else if (input.logType === "Time") {
+        const newTimeRecord = await prisma.timeRecord
+          .create({
+            data: {
+              userId: usersId.id,
+              exerciseName: input.exerciseName,
+              time: input.time,
+              exerciseType: input.exerciseType,
+            },
+          })
+          .catch((err) => {
+            console.log("There was an error creating the Time Record, ", err);
+            throw err;
+          });
       }
 
       return {
-        message: "Log was successful",
+        message: null,
+        errorMessage: "The log type didn't match an acceptable entry",
       };
     }),
 });
