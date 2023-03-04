@@ -48,7 +48,6 @@ const DashboardPersonalRecords = () => {
         new Date(b.datePerformed).valueOf() -
         new Date(a.datePerformed).valueOf()
     );
-    console.log(slicedData);
     return (
       <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
         <TitleBadge text="PERSONAL RECORDS..." />

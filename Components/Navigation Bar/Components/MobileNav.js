@@ -4,7 +4,7 @@ export default function MobileNav({ open, setOpen, session }) {
   return (
     <>
       <div
-        className="z-50 flex relative w-8 h-8 flex-col justify-between items-center md:hidden"
+        className="flex relative w-8 h-8 flex-col justify-between items-center md:hidden z-50"
         onClick={() => {
           setOpen(!open);
         }}
@@ -12,7 +12,7 @@ export default function MobileNav({ open, setOpen, session }) {
         {/* hamburger button */}
         <span
           className={`h-1 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${
-            open ? "rotate-45 translate-y-3.5" : ""
+            open ? "rotate-45 translate-y-3.5" : null
           }`}
         />
         <span
@@ -22,7 +22,7 @@ export default function MobileNav({ open, setOpen, session }) {
         />
         <span
           className={`h-1 w-full bg-black rounded-lg transform transition duration-300 ease-in-out ${
-            open ? "-rotate-45 -translate-y-3.5" : ""
+            open ? "-rotate-45 -translate-y-3.5" : null
           }`}
         />
       </div>
@@ -36,7 +36,7 @@ export default function MobileNav({ open, setOpen, session }) {
             fITTY
           </a>
         </div>
-        <div className="z-40 flex flex-col ml-4">
+        <div className="flex flex-col ml-4">
           <MobileLink href="/" setOpen={setOpen} open={open} linkText="HOME" />
           {session ? (
             <>

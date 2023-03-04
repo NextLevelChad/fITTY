@@ -22,11 +22,9 @@ function MyApp({
         />
       </Head>
       <SessionProvider session={pageProps.session}>
-        <div className="min-w-screen min-h-screen overflow-hidden flex flex-col">
+        <div className="flex flex-col">
           <Navbar />
-          <div className="flex-grow flex flex-col">
-            <Component {...pageProps} />
-          </div>
+          <Component {...pageProps} />
         </div>
       </SessionProvider>
     </>
