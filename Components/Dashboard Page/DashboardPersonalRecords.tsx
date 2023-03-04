@@ -60,6 +60,7 @@ const DashboardPersonalRecords = () => {
                 exerciseName={record.exerciseName}
                 type="strength"
                 weight={record.weight}
+                logType="personalRecord"
               />
             );
           })
