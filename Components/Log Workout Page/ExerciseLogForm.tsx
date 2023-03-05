@@ -116,7 +116,7 @@ export default function ExerciseLogForm() {
       logType: "Sets",
       sets: [],
       personalRecord: null,
-      exerciseType: null,
+      exerciseType: "Strength",
       time: 0,
     });
   };

@@ -19,7 +19,7 @@ function ExerciseBar(props) {
           height="25"
         />
         <div className="border-l border-dashed  w-2 h-4 basis-1 border-gray-400 m-0 p-0 shrink" />
-        <Link href={`/charts/${props.logType}/${props.exerciseName}`}>
+        <Link href={`/dashboard/charts/${props.logType}/${props.exerciseName}`}>
           <Image
             src="/assets/svgs/chart.svg"
             alt="Chart button"

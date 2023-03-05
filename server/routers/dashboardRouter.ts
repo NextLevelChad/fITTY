@@ -42,6 +42,7 @@ export const dashboardRouter = router({
       })
     )
     .query(async ({ input }) => {
+      console.log(input);
       const usersId = await prisma.user.findUnique({
         where: {
           email: input.userEmail,
