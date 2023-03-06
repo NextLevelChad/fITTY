@@ -9,6 +9,7 @@ import { trpc } from "../../utils/trpc";
 //parts
 import TitleBadge from "./TitleBadge";
 import ExerciseRecordCard from "./ExerciseRecordCard";
+import DashboardCard from "./DashboardCard";
 
 const DashboardPersonalRecords = () => {
   const { data: session } = useSession();
@@ -21,23 +22,21 @@ const DashboardPersonalRecords = () => {
 
   if (isLoading) {
     return (
-      <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
-        <TitleBadge text="PERSONAL RECORDS..." />
+      <DashboardCard titleText={"Personal Records"} themeColor={"aquamarine"}>
         <span className="text-center">
           Your last 5 Personal Records are loading...
         </span>
-      </div>
+      </DashboardCard>
     );
   }
 
   if (isError) {
     return (
-      <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
-        <TitleBadge text="PERSONAL RECORDS..." />
+      <DashboardCard titleText={"Personal Records"} themeColor={"aquamarine"}>
         <span className="text-center">
           There was an error retrieving your personal records
         </span>
-      </div>
+      </DashboardCard>
     );
   }
 
@@ -49,9 +48,7 @@ const DashboardPersonalRecords = () => {
         new Date(a.datePerformed).valueOf()
     );
     return (
-      <div className="shadow-dashboard-card m-4 py-10 px-2 relative justify-center flex flex-col rounded-lg border-2 border-orange-accent sm:min-h-80 max-w-xs bg-color-light-white-fill md:max-w-lg ">
-        <TitleBadge text="PERSONAL RECORDS..." />
-        <span className="text-center">Your last 5 Personal Records</span>
+      <DashboardCard titleText={"Personal Records"} themeColor={"aquamarine"}>
         {data.length > 0 ? (
           slicedData?.map((record) => {
             return (
@@ -67,12 +64,7 @@ const DashboardPersonalRecords = () => {
         ) : (
           <div>You do not currently have any stored personal records</div>
         )}
-        <Link href="/dashboard/personalrecords">
-          <div className="flex justify-center text-center items-center mt-4 bg-color-light-white-fill border-2 rounded-sm border-orange-accent p-4">
-            More...
-          </div>
-        </Link>
-      </div>
+      </DashboardCard>
     );
   }
 };
