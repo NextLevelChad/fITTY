@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import DashboardMoreButton from "./DashboardMoreButton";
-import TitleBadge from "./TitleBadge";
+import DashboardMoreButton from "./Dashboard Card Components/DashboardMoreButton";
+import TitleBadge from "./Dashboard Card Components/TitleBadge";
 
 function DashboardCard({ children, titleText, themeColor }) {
   return (

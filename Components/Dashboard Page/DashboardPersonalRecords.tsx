@@ -7,7 +7,7 @@ import Link from "next/link";
 import { trpc } from "../../utils/trpc";
 
 //parts
-import TitleBadge from "./TitleBadge";
+import TitleBadge from "./Dashboard Card Components/TitleBadge";
 import ExerciseRecordCard from "./ExerciseRecordCard";
 import DashboardCard from "./DashboardCard";
 
@@ -48,7 +48,7 @@ const DashboardPersonalRecords = () => {
         new Date(a.datePerformed).valueOf()
     );
     return (
-      <DashboardCard titleText={"Personal Records"} themeColor={"aquamarine"}>
+      <DashboardCard titleText={"Personal Records"} themeColor="pizazz">
         {data.length > 0 ? (
           slicedData?.map((record) => {
             return (

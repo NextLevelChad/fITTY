@@ -3,12 +3,7 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./Components/**/*.{js,ts,jsx,tsx}",
-    './app/**/*.{js,ts,jsx,tsx}'
-  ],
-  safelist: [
-    'bg-aquamarine-500',
-    'text-3xl',
-    'lg:text-4xl',
+    "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {
@@ -23,12 +18,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        "green-badge-text": "#008E75",
-        "green-badge-fill": "#EBFFFE",
-        "green-badge-border": "#49F6B8",
-        "orange-accent": "#49F6B8",
-        "light-white-fill": "#FEFFFD",
-        'aquamarine': {
+        tahiti: "#06b6d4",
+        aquamarine: {
           DEFAULT: "#49F6B8",
           50: "#F8FFFC",
           100: "#E5FEF5",
@@ -41,7 +32,7 @@ module.exports = {
           800: "#07905F",
           900: "#045A3B",
         },
-        'orient': {
+        orient: {
           DEFAULT: "#005B8E",
           50: "#47BDFF",
           100: "#32B5FF",
@@ -54,7 +45,7 @@ module.exports = {
           800: "#000000",
           900: "#000000",
         },
-        'pizazz': {
+        pizazz: {
           DEFAULT: "#FF8A00",
           50: "#FFDEB8",
           100: "#FFD5A3",
@@ -67,7 +58,7 @@ module.exports = {
           800: "#572F00",
           900: "#1F1100",
         },
-        'red-orange': {
+        "red-orange": {
           DEFAULT: "#F83B3B",
           50: "#FEECEC",
           100: "#FED9D9",
