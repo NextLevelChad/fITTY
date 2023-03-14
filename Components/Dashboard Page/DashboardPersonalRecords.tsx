@@ -7,7 +7,6 @@ import Link from "next/link";
 import { trpc } from "../../utils/trpc";
 
 //parts
-import TitleBadge from "./Dashboard Card Components/TitleBadge";
 import ExerciseRecordCard from "./ExerciseRecordCard";
 import DashboardCard from "./DashboardCard";
 
@@ -22,7 +21,11 @@ const DashboardPersonalRecords = () => {
 
   if (isLoading) {
     return (
-      <DashboardCard titleText={"Personal Records"} themeColor={"aquamarine"}>
+      <DashboardCard
+        titleText={"Personal Records"}
+        themeColor={"Aquamarine"}
+        more={false}
+      >
         <span className="text-center">
           Your last 5 Personal Records are loading...
         </span>
@@ -32,7 +35,11 @@ const DashboardPersonalRecords = () => {
 
   if (isError) {
     return (
-      <DashboardCard titleText={"Personal Records"} themeColor={"aquamarine"}>
+      <DashboardCard
+        titleText={"Personal Records"}
+        themeColor={"aquamarine"}
+        more={false}
+      >
         <span className="text-center">
           There was an error retrieving your personal records
         </span>
@@ -48,7 +55,11 @@ const DashboardPersonalRecords = () => {
         new Date(a.datePerformed).valueOf()
     );
     return (
-      <DashboardCard titleText={"Personal Records"} themeColor="pizazz">
+      <DashboardCard
+        titleText={"Personal Records"}
+        themeColor="aquamarine"
+        more={true}
+      >
         {data.length > 0 ? (
           slicedData?.map((record) => {
             return (

@@ -18,7 +18,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        tahiti: "#06b6d4",
         aquamarine: {
           DEFAULT: "#49F6B8",
           50: "#F8FFFC",
@@ -58,7 +57,7 @@ module.exports = {
           800: "#572F00",
           900: "#1F1100",
         },
-        "red-orange": {
+        redOrange: {
           DEFAULT: "#F83B3B",
           50: "#FEECEC",
           100: "#FED9D9",
