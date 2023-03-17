@@ -18,6 +18,9 @@ model User {
   exerciseRecords ExerciseRecord[]
   personalRecords PersonalRecord[]
   TimeRecord      TimeRecord[]
+  weight          Int[]            @default([0])
+  height          Int              @default(0)
+  bmi             Int              @default(0)
 }
 
 //For Logging the Exercise Record off the Form
